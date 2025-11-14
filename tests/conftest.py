@@ -10,9 +10,9 @@ load_dotenv()
 def logged_in_page(page: Page):
     """Фикстура которая логинится и возвращает страницу"""
     # Получаем данные из .env файла
-    base_url = os.getenv("BASE_URL", "https://www.saucedemo.com/")
-    username = os.getenv("SAUCE_USER", "standard_user")
-    password = os.getenv("SAUCE_PASS", "secret_sauce")
+    base_url = os.getenv("BASE_URL")
+    username = os.getenv("SAUCE_USER")
+    password = os.getenv("SAUCE_PASS")
 
     page.goto(base_url)
     page.locator("[data-test=\"username\"]").fill(username)
