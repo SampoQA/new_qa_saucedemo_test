@@ -14,9 +14,9 @@ def logged_in_page(page: Page):
     username = os.getenv("SAUCE_USER", "standard_user")
     password = os.getenv("SAUCE_PASS", "secret_sauce")
 
-    page.goto("https://www.saucedemo.com/")
-    page.locator("[data-test=\"username\"]").fill("standard_user")
-    page.locator("[data-test=\"password\"]").fill("secret_sauce")
+    page.goto(base_url)
+    page.locator("[data-test=\"username\"]").fill(username)
+    page.locator("[data-test=\"password\"]").fill(password)
     page.locator("[data-test=\"login-button\"]").click()
 
     # Проверяем что логин успешен
