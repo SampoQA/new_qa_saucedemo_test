@@ -2,7 +2,7 @@ import os
 import pytest
 from playwright.sync_api import Page, expect
 from dotenv import load_dotenv
-# Загружаем переменные из .env файла
+# Загружаем переменные из .env.standard файла
 load_dotenv()
 
 def test_add_items_to_cart(logged_in_page, screenshot_on_failure):
