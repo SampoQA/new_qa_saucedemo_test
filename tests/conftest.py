@@ -4,6 +4,7 @@ from playwright.sync_api import Page, expect
 from dotenv import load_dotenv
 # Загружаем переменные из .env файла
 load_dotenv()
+from datetime import datetime
 
 # Фикстура для логина - выполняется перед каждым тестом
 @pytest.fixture
@@ -24,3 +25,16 @@ def logged_in_page(page: Page):
 
     return page
 
+@pytest.fixture
+def screenshot_on_failure(page, request):
+    """Делает скриншот при падении теста"""
+    yield
+    if request.node.rep_call.failed:
+        # Создаем папку для скриншотов если её нет
+        os.makedirs("screenshots", exist_ok=True)
+        # Генерируем уникальное имя файла
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        test_name = request.node.name
+        screenshot_path = f"screenshots/{test_name}_{timestamp}.png"
+        page.screenshot(path=screenshot_path)
+        print(f"Скриншот сохранен: {screenshot_path}")

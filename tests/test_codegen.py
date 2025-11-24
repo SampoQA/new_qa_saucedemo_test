@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 # Загружаем переменные из .env файла
 load_dotenv()
 
-def test_add_items_to_cart(logged_in_page):
+def test_add_items_to_cart(logged_in_page, screenshot_on_failure):
     """Тест добавления товаров в корзину"""
     page = logged_in_page
 
@@ -19,7 +19,7 @@ def test_add_items_to_cart(logged_in_page):
     expect(page.locator("[data-test=\"shopping-cart-link\"]")).to_be_visible()
 
 
-def test_remove_item_from_cart(logged_in_page):
+def test_remove_item_from_cart(logged_in_page, screenshot_on_failure):
     """Тест удаления товара из корзины"""
     page = logged_in_page
 
@@ -35,7 +35,7 @@ def test_remove_item_from_cart(logged_in_page):
     expect(page.locator("[data-test=\"checkout\"]")).to_contain_text("Checkout")
 
 
-def test_complete_purchase(logged_in_page):
+def test_complete_purchase(logged_in_page, screenshot_on_failure):
     """Тест полного процесса покупки"""
     page = logged_in_page
 
