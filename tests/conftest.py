@@ -5,8 +5,9 @@ from dotenv import load_dotenv
 from datetime import datetime
 
 # Получаем абсолютный путь к директории, где находится conftest.py
-current_dir = os.path.dirname(os.path.abspath(__file__))
-env_path = os.path.join(current_dir, '.env.standard')
+# Получаем абсолютный путь к директории, где находится conftest.py
+current_dir = os.path.dirname(os.path.abspath(__file__)) #__file__ - говорит: "Где я нахожусь?",abspath - превращает это в полный адрес,dirname - берет только папку, где лежит файл
+env_path = os.path.join(current_dir, '.env.standard') #Собирает полный путь к файлу с настройками Как сказать: "В той же папке, где я нахожусь, найди файл '.env.standard'"
 
 print(f"Абсолютный путь к .env.standard: {env_path}")
 print(f"Файл существует: {os.path.exists(env_path)}")
